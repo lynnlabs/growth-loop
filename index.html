@@ -994,7 +994,7 @@ function renderModule(mid, d) {
         listHtml='<div class="empty-state">还没有记录<br>从今天开始 🚀</div>';
     } else {
         const grouped={};
-        [...entries].reverse().forEach(e=>{const m=e.date.slice(0,7);if(!grouped[m])grouped[m]=[];grouped[m].push(e);});
+        [...entries].sort((a,b)=>b.date.localeCompare(a.date)||(b.id-a.id)).forEach(e=>{const m=e.date.slice(0,7);if(!grouped[m])grouped[m]=[];grouped[m].push(e);});
         const months=Object.keys(grouped).sort((a,b)=>b.localeCompare(a));
         const curMonth=today().slice(0,7);
         const makeEntryHtml=e=>{
